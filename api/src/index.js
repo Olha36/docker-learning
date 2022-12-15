@@ -9,7 +9,7 @@ const HOST = process.env.HOST;
 const MONGO_URL = process.env.MONGO_URL;
 
 
-const User = mongoose.model('User', { userName: String, age: Number });
+const User = mongoose.model('User', { name: String, age: Number });
 
 // App
 const app = express();
@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
 
 app.get("/users", async (req, res) => {
   try {
-      const user = new User({userName: "Olha", age: 24 });
+      const user = new User({name: "Olha", age: 24 });
       await user.save();
       await User.find();
       const users = await User.find();
