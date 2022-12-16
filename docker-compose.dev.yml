@@ -1,5 +1,15 @@
 version: "3.9"
 services:
+  frontend:
+    build:
+      context: frontend
+      dockerfile: Dockerfile.dev
+    command: npm start
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./frontend:/usr/src/app
+      - /app/node_modules
   api:
     command: "npm run dev"
     volumes:
