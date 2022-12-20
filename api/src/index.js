@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
 });
 
 
-app.get("/users", async (req, res) => {
+app.get("/user", async (req, res) => {
   try {
       const user = new User({name: "Olha", age: 24 });
       await user.save();
