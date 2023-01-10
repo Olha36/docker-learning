@@ -3,21 +3,25 @@ services:
   nginx:
     volumes:
       - ./nginx/nginx.dev.conf:/etc/nginx/conf.d/nginx.conf
+
   frontend:
     build:
-      context: frontend
+      context: ./frontend
       dockerfile: Dockerfile.dev
     command: npm start
+    stdin_open: true 
+    tty: true        
     environment:
       - CHOKIDAR_USEPOLLING=true
-    stdin_open: true
-    tty: true
+      - MY_VAR=true
     volumes:
-      - ./frontend:/usr/src/app
-      - /app/node_modules
+      - './frontend:/usr/src/app'
+      - '/app/node_modules'
+
   api:
-    command: "npm run dev"
+    command: npm run dev
     volumes:
       - ./api/src:/usr/src/app/src
+
     
 
